@@ -114,7 +114,7 @@ def restaurant_detail(request,year,month,day,id):
     restaurant.hoter=float(int(restaurant.hoter)+1)
     restaurant.save()
 
-    return render_to_response('meal/restaurant_detail.html', {"restaurant": restaurant})
+    return render_to_response('meal/restaurant_detail.html', {"restaurant": restaurant,'user': request.user})
     
     
     
