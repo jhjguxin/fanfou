@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}restaurant_detail{% endblock %}
+
+
+{% block body %}
+
+ 
+                      <h2>{{ restaurant.article }}</h2>
+                      
+                      <p>发布者：admin 发布时间：{{ restaurant.date }} hoter：<font color="#FF0000">{{ restaurant.hoter }}</p>
+                        <P align=center><IMG border=0 src="{{ restaurant.img.url }}" alt="img for {{ restaurant.article }}" height="800" width="1200" ></P>
+                        <h3>notes:</h3>
+                        <p>{{ restaurant.notes }}</p>
+  
+
+
+{% endblock %}

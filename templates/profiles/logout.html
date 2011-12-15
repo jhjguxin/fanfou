@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}logout{% endblock %}
+{% block body %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a></div>
+
+<p>{% trans "Thanks for spending some quality time with the Web site today." %}</p>
+
+<p><a href="{% url login %}" title="log in" >{% trans 'Log in again' %}</a></p>
+
+{% endblock %}

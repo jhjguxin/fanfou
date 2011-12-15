@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}restaurant list{% endblock %}
+
+
+{% block body %}
+
+    <ul>
+        {% for restaurant in restaurant_list %}
+            <li>
+                <a href="{{ restaurant.get_absolute_url }}" title="click to view {{restaurant.article}}" >{{ restaurant.article }}</a>
+                <a href="{{ restaurant.img.url }}">click to view menu</a>
+                date:{{ restaurant.date }}(hoter:{{ restaurant.hoter }}) 
+            </li>                     
+        {% endfor %}
+    <ul>                    
+{% endblock %}

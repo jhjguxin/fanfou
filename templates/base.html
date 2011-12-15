@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>fanfou--{% block title %}{% endblock %}</title>
+{% block extra_meta %}
+{% endblock %}
+
+</head>
+<body>
+<div id="header">
+    <div id="Certification">
+        {% if user.is_authenticated %}
+            <p>Welcome, <a href="/profiles/{{ user.username }}" title="{{ user.username }}'s profile">{{ user.username }}</a>. 改<a href="{% url passwordchange username=user.username %}" title="passwordchange">密码</a> or <a href="{% url logout %}"title="logout">退出</a>.</p>
+        {% else %}
+            <p>Welcome, 新用户. 请 <a href="{% url login %}" title="log in" > login </a>or<a href="{% url create_user %}" title="register">register</a> .</p>
+        {% endif %}
+
+    </div>
+<div id='meal'>
+  <p>I want do <a href="{% url order %}" title="order meal" >order</a> meal</p>
+  <p>I want do veiw <a href="{% url orderlist %}" title="veiw orders list" >all</a> of orders list or <a href="{% url todayorder %}" title="veiw today orders list" >today</a> orders list</p>
+  <p>the  <a href="{% url summary %}" title="the summary" >summary</a></p>
+  <p>the <a href="{% url restaurant_list %}" title="the restaurant show" >restaurant</a> show</p>
+</div>
+
+ {% block body %}It's base templates!{% endblock %}
+<p>if you lose,you can back to <a href="{% url home %}" title="back to index">index</a></p>
+</body>
+</html>

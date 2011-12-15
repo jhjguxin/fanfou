@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}
+{% block tab %}profile{% endblock %}
+{% block body %}
+   
+
+    <h1>{{ user.username }}</h1>
+   {% if user %}
+        <div class="profile">
+           <p>{{user.get_full_name}}</p>
+           <p>email:{{user.email}}</p>
+           <p>is_active:{{user.is_active}}</p>
+           <p>last_login:{{user.last_login}}</p>
+
+
+        </div>
+   {% endif %}
+   <p>click to edite <a href="/profiles/{{ user.username }}/edite" title="click to edite {{ user.username }}'s profile">profile</a>.</p>
+{% endblock %}

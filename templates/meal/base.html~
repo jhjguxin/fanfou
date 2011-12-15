@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>fanfou--{% block title %}{% endblock %}</title>
+{% block extra_meta %}
+{% endblock %}
+
+</head>
+<body>
+<div id="header">
+    <div id="Certification">
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}. 改<a href="{% url passwordchange user_id=user.pk %}">密码</a>or<a href="{% url logout %}"title="logout">退出</a>.</p>
+        {% else %}
+            <p>Welcome, 新用户. 请 <a href="{% url login %}" title="log in" >login</a>or<a href="{% url create_user %}" >register</a> .</p>
+        {% endif %}
+
+    </div>
+
+ {% block body %}It's base templates!{% endblock %}
+</body>
+</html>

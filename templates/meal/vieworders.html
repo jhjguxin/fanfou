@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}oders list{% endblock %}
+{% block body %}
+
+<h2>oders list</h2>
+
+{% if orders %}
+<table border="1">
+  <tr>
+    <th>Date</th>
+    <th>User</th>
+    <th>Price</th>
+    <th>Count*</th>
+    <th>total*</th>
+  </tr>
+  {% for order in orders %}
+    <tr>
+      <td>{{ order.date }}</td>
+      <td>{{ order.user }}</td>
+      <td>{{ order.price }}</td>
+      <td align="right">{{ order.guests|add:"1" }}</td>
+      <td>{{ order.total }}</td>
+    </tr>
+  {% endfor %}
+ALL in total:{{atotal}}
+</table>
+<p style="margin-top:0; font-size: 0.77em;">* The count and total includes the employee plus his or her guests.</p>
+
+{% else %}
+    <p>No lunch orders today ... you eat alone!</p>
+{% endif %}
+
+{% endblock %}

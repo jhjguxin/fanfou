@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}index{% endblock %}
+{% block body %}
+<div>
+<h2>read me</h2>
+<p>A Django based, simple lunch attendance app to help run an optional attendance meal-plans </P>
+<PRE>{% include "../README" %}</PRE>
+
+
+<div>
+
+
+{% endblock %}
