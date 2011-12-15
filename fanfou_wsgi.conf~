@@ -1,16 +1,21 @@
-
+<VirtualHost *:8080>
 #ServerName www.blogserver.com
-ServerName localhost:8080
+ServerName fanfou.localhost
 LoadModule wsgi_module /usr/lib/apache2/modules/mod_wsgi.so
 
 Alias /static /var/www/fanfou/static
-
 <Directory /var/www/fanfou/static>
  Order Deny,Allow
  Allow from all
 </Directory>
 
-Alias /media /usr/lib/pymodules/python2.7/django/contrib/admin/media
+Alias /media /var/www/fanfou/media
+<Directory /var/www/fanfou/media>
+ Order Deny,Allow
+ Allow from all
+</Directory>
+
+Alias /static/admin/ /usr/lib/pymodules/python2.7/django/contrib/admin/media
 <Directory /usr/lib/pymodules/python2.7/django/contrib/admin/media/>
  Order Deny,Allow
  Allow from all
@@ -25,3 +30,5 @@ WSGIScriptAlias / /var/www/fanfou/conf.wsgi
 </Directory>
 
 #sudo apache2ctl -k restart
+</VirtualHost>
+#do not forget to open port in ports.conf,and one project setting one virtualhost
