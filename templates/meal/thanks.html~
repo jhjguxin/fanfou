@@ -3,6 +3,6 @@
 {% block title %}Thanks{% endblock %}
 {% block body %}
 
-<p>Thanks for the order! </p>
+<p>Thanks for the order! or your are late 明天早点哦</p>
 {% endblock %}
 

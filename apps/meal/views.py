@@ -16,17 +16,19 @@ import calendar
 import pdb
 
 def placeOrder(request):
-    sameday = False
+    switch = False
     #pdb.set_trace()
     if request.user.is_anonymous():
         #return redirect_to_login('/',login_url="/login")
         return HttpResponseRedirect(urlreverse('login'))
     else:
-
+        #pdb.set_trace()this time switch
+        if not(datetime.datetime.now().hour<=10 and datetime.datetime.now().minute<=25):
+            switch=True
         # if lunch was already submitted today...
-        todays_orders = Order.objects.filter(user=request.user,date=datetime.date.today())
-        if todays_orders.exists():
-            sameday = True
+            todays_orders = Order.objects.filter(user=request.user,date=datetime.date.today())
+            if todays_orders.exists():
+                switch = True
     
         if request.method == 'POST' and not sameday: # If the form has been submitted...
             #request.META['REMOTE_HOST']
@@ -41,7 +43,7 @@ def placeOrder(request):
             form = OrderForm() # An unbound form
 
         return render_to_response('meal/orderform.html',
-                               {'form': form, 'username' : request.user.username, 'sameday': sameday },
+                               {'form': form, 'username' : request.user.username, 'switch': switch },
                               context_instance=RequestContext(request))
 
 def thanks(request):
