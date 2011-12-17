@@ -1,19 +1,63 @@
 {% extends "base.html" %}
-{% block title %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}
+{% load comments %}
+{% load gravatar %}
+{% block title %}{{ user.first_name }} {{ user.last_name }}{% endblock %}
 {% block tab %}profile{% endblock %}
 {% block body %}
    
 
     <h1>{{ user.username }}</h1>
-   {% if user %}
+   {% if sameone %}
         <div class="profile">
-           <p>{{user.get_full_name}}</p>
-           <p>email:{{user.email}}</p>
-           <p>is_active:{{user.is_active}}</p>
-           <p>last_login:{{user.last_login}}</p>
-
+           <p>full_name:{{user1.get_full_name}}</p>
+           <p>email:{{user1.email}}</p>
+           <p>is_active:{{user1.is_active}}</p>
+           <p>last_login:{{user1.last_login}}</p>
+           <p>click to edite <a href="/profiles/{{ user.username }}/edite" title="click to edite {{ user.username }}'s profile">profile</a>.</p>
 
         </div>
    {% endif %}
-   <p>click to edite <a href="/profiles/{{ user.username }}/edite" title="click to edite {{ user.username }}'s profile">profile</a>.</p>
+
+
+ <div class="comments_list">
+
+        {% get_comment_list for user1 as comment_list %}
+
+        <ul>
+            {% for comment in comment_list %}
+                <li class="comment">
+                    <span>
+                    <div class="comment_header" >
+                        <div class="comment_image">
+                            {% gravatar_for_email comment.user_email 80 %}
+                        </div>
+                        
+                        <p class="comment_name">
+                            {% if comment.url %}
+                                <a href="{{ comment.url }}">{{ comment.name }}</a>
+                            {% else %}
+                                {{ comment.name }}
+                            {% endif %}
+                        </p>
+                        <p class="comment_date">{{ comment.submit_date|date:"n/j/y @ g:i A" }} </p>
+                    </div>
+
+
+                    <div class="comment_body" >{{ comment.comment|safe }} </div>
+                  </span>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div id="comment_form">
+        <div class="comment_form_header">
+        Leave a Comment:Comments support <a href="http://daringfireball.net/projects/markdown/">markdown</a>.
+        </div>
+        <div class="comment_form_body">
+        {% get_comment_form for user1 as form %}
+        {% include "comments/comment_form.html" %}
+        </div>
+    </div>
+
 {% endblock %}

@@ -23,14 +23,15 @@ def placeOrder(request):
         return HttpResponseRedirect(urlreverse('login'))
     else:
         #pdb.set_trace()this time switch
-        if not(datetime.datetime.now().hour<=10 and datetime.datetime.now().minute<=25):
+        d=datetime.date.today()
+        if datetime.datetime.now()>datetime.datetime(d.year,d.month, d.day, 11, 25, 0,0):
             switch=True
         # if lunch was already submitted today...
-            todays_orders = Order.objects.filter(user=request.user,date=datetime.date.today())
+            todays_orders = Order.objects.filter(user=request.user,date__year=d.year,date__month=d.month,date__day=d.day)
             if todays_orders.exists():
                 switch = True
     
-        if request.method == 'POST' and not sameday: # If the form has been submitted...
+        if request.method == 'POST' and not switch: # If the form has been submitted...
             #request.META['REMOTE_HOST']
             #pdb.set_trace()
             form = OrderForm(request.POST, instance=Order(user=request.user,pc=request.META['REMOTE_ADDR'],total=request.POST.get('total'))) # A form bound to the POST data

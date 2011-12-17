@@ -135,6 +135,8 @@ INSTALLED_APPS = (
     'apps.fanfou',
     'apps.meal',
     'profiles',
+    'fanfou.pagination',
+    'gravatar',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

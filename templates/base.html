@@ -1,3 +1,7 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load object_counts %}
+{% load date_counts %}
+{% load gravatar %}
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -9,20 +13,30 @@
 <body>
 <div id="header">
     <div id="Certification">
+        <p>
         {% if user.is_authenticated %}
-            <p>Welcome, <a href="/profiles/{{ user.username }}" title="{{ user.username }}'s profile">{{ user.username }}</a>. 改<a href="{% url passwordchange username=user.username %}" title="passwordchange">密码</a> or <a href="{% url logout %}"title="logout">退出</a>.</p>
+            Welcome, <a href="/profiles/{{ user.username }}" title="{{ user.username }}'s profile">{{ user.username }}</a>. 改<a href="{% url passwordchange username=user.username %}" title="passwordchange">密码</a> or <a href="{% url logout %}"title="logout">退出</a>.
         {% else %}
-            <p>Welcome, 新用户. 请 <a href="{% url login %}" title="log in" > login </a>or<a href="{% url create_user %}" title="register">register</a> .</p>
+            Welcome, 新用户. 请 <a href="{% url login %}" title="log in" > login </a>or<a href="{% url create_user %}" title="register">register</a> .
         {% endif %}
-
+        <a href="/profiles/jhjguxin" title="ask admin">我要留言</a>
+        </p>
     </div>
-<div id='meal'>
-  <p>I want do <a href="{% url order %}" title="order meal" >order</a> meal</p>
-  <p>I want do veiw <a href="{% url orderlist %}" title="veiw orders list" >all</a> of orders list or <a href="{% url todayorder %}" title="veiw today orders list" >today</a> orders list</p>
-  <p>the  <a href="{% url summary %}" title="the summary" >summary</a></p>
-  <p>the <a href="{% url restaurant_list %}" title="the restaurant show" >restaurant</a> show</p>
-</div>
 
+<div id='fanfou'>
+  <p>I want do <a href="{% url f_order %}" title="order meal" >order</a> meal</p>
+  <p>I want do veiw <a href="{% url f_orderlist %}" title="veiw orders list" >all</a> of orders list or <a href="{% url f_todayorder %}" title="veiw today orders list" >today</a> orders list</p>
+  <p>the  <a href="{% url f_summary %}" title="the summary" >summary</a></p>
+
+</div>
+  <p>the restaurant show:</p>
+    {% object_counts for fanfou.Category as categories %}
+        {% for category in categories %}
+            {% ifnotequal category.article_set.count 0 %}
+                <li><a href="{{ category.get_absolute_url }}">{{ category.name }} ({{category.article_set.count }})</a>
+                </li>
+            {% endifnotequal %}
+        {% endfor %}
  {% block body %}It's base templates!{% endblock %}
 <p>if you lose,you can back to <a href="{% url home %}" title="back to index">index</a></p>
 </body>

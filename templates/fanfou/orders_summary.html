@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Lunch Order Monthly Summary{% endblock %}
+<head>
+{% block extra_meta %}
+<script type="text/javascript">
+    function on_select_date(evt) {
+      window.location = evt.target.options.item(evt.target.selectedIndex).value;
+    }
+</script>
+{% endblock %}
+
+
+
+{% block body %}
+<h2>Lunch Order Summary:</h2>
+
+<form method="post" action="">
+  <table>
+    <tr>
+      <th><label>Select a month: </label></th>
+      <td>
+        <select onchange="on_select_date(event);">
+        {% for x in dateslist %}
+            <option {% if x.selected %} selected="true" {% endif %} value="{{ x.val }}">
+              {{ x.title }}
+            </option>
+        {% endfor %}
+        </select>
+      </td>
+    </tr>
+  </table>
+</form>
+
+
+
+<h3>For {{ month }}, {{ year }}</h3>
+
+<table border="1">
+  <tr>
+    <th>User</th>
+    <th>Sum</th>
+    <th>Percent</th>
+  </tr>
+  {% for usertotal in usertotals %}
+    <tr>
+      <td>{{ usertotal.user }}</td>
+      <td align="right">{{ usertotal.sum }}</td>
+      <td align="right">{{ usertotal.percent|floatformat:1 }}%</td>
+    </tr>
+  {% endfor %}
+  <tr>
+    <th align="left">Total</th>
+    <th align="right">{{ grandtotal }}</th>
+    <th>&nbsp;</th>
+  </tr>
+</table>
+{% endblock %}

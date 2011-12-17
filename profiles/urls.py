@@ -1,24 +1,24 @@
 from django.conf.urls.defaults import *
-from fanfou.profiles.models import Profile
+#from fanfou.profiles.models import Profile
 from django.contrib.auth.models import User
 from django.contrib.auth.views import login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import PasswordResetForm,PasswordChangeForm,AdminPasswordChangeForm
 
-create_user_dict = {
-    'model': User,
-    'template_name': 'profiles/create_user.html',
-    'form_class':UserCreationForm,
-    'post_save_redirect':'update_profile',
-}
+#create_user_dict = {
+#    'model': User,
+#    'template_name': 'profiles/create_user.html',
+#    'form_class':UserCreationForm,
+#    'post_save_redirect':'update_profile',
+#}
 
 
 
-update_profile_dict = {
-    'model': Profile,
-    'template_object_name': 'profile',
-    'login_required':True,
-}
+#update_profile_dict = {
+#    'model': Profile,
+#    'template_object_name': 'profile',
+#    'login_required':True,
+#}
 
 urlpatterns = patterns('fanfou.profiles.views',
     url(r'^create', 'create_user', name='create_user'),

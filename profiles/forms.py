@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.forms import PasswordResetForm,PasswordChangeForm,AdminPasswordChangeForm,UserChangeForm
 import pdb
 import datetime
-from fanfou.profiles.models import Profile
+#from fanfou.profiles.models import Profile
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 

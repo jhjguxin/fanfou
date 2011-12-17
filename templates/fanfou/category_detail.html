@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}restaurant_detail:{{ restaurants.name }}{% endblock %}
+{% block body %}
+
+    <h2 class="restaurant_detail"> {{ restaurants.name }} </h2>
+    {% with restaurants.article_set.all as articles %}
+        <div id="restaurant">
+
+            {% for object in articles %}
+                <li>name:{{object.name}}--restaurant:{{object.category}}--price:{{object.price}}--date:{{object.date_modified}}</p></li>
+            {% endfor %}
+        </div>
+    {% endwith %}
+        <p>call: {{ restaurants.call }}</p>
+        <p>notes: {{ restaurants.notes }}</p>
+{% endblock %}

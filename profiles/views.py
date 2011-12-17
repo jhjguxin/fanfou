@@ -1,4 +1,4 @@
-from fanfou.profiles.models import Profile
+#from fanfou.profiles.models import Profile
 from django.shortcuts import render_to_response, get_object_or_404,redirect
 from django.template import RequestContext
 from django.contrib.auth.forms import UserCreationForm
@@ -26,25 +26,31 @@ def editer_profile(request, username):
     form = ProfileForm
     if username:
         user=get_object_or_404(User, username=username)
+    if user==request.user:
     #pdb.set_trace()
-    if request.method == 'POST':
+        if request.method == 'POST':
 
-        form = ProfileForm(request.POST,instance=user)
-        if form.is_valid():
-            ct=form.cleaned_data
-            form.save()
-            #user.get_profile().
-            return HttpResponseRedirect(reverse(display_profile,args=[user] ))
+            form = ProfileForm(request.POST,instance=user)
+            if form.is_valid():
+                ct=form.cleaned_data
+                form.save()
+                #user.get_profile().
+                return HttpResponseRedirect(reverse(display_profile,args=[user] ))
             
-    else:
+        else:
         
-        form = ProfileForm(instance=user)
+            form = ProfileForm(instance=user)
     
     return render_to_response('profiles/profile_edite.html',{ 'form': form,'user':user })
 
 def display_profile(request, username):
     user = get_object_or_404(User, username=username)
-    return render_to_response("profiles/profile_show.html", { 'user':user })
+    if user==request.user:
+        sameone=True
+    else:
+        sameone=False
+
+    return render_to_response("profiles/profile_show.html", { 'user1':user,'user':request.user,'sameone':sameone })
 def passwordchange(request, username=None):
     password_change_form=PasswordChangeForm
     #pdb.set_trace()

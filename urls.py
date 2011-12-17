@@ -34,8 +34,10 @@ if settings.DEBUG:
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^profiles/', include('profiles.urls')),
     url(r'^meal/', include('apps.meal.urls')),
+    url(r'^fanfou/', include('apps.fanfou.urls')),
     url(r'^login',login,{"template_name":'profiles/login.html'},name='login'),
     url(r'^logout/$', logout,{"template_name":'profiles/logout.html'},name='logout'),
 
