@@ -1,6 +1,5 @@
-
 {% extends "base.html" %}
-{% load i18n %}
+
 {% block title %}oders list{% endblock %}
 {% block body %}
 
@@ -19,7 +18,7 @@
     <tr>
       <td>{{ order.author }}</td>
       <td>{{ order.article }}</td>
-      <td align="right">{{ order.guests|add:"1" }}</td>
+      <td>{{ order.guests|add:"1" }}</td>
       <td>{{ order.total }}</td>
       <td>{{ order.created_on }}</td>
     </tr>
