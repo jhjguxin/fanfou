@@ -27,7 +27,7 @@ def placeOrder(request):
         d=datetime.date.today()
         #read today's menue if you want render the aritcle with mult category your can query category and send to templates
         today_article=Article.objects.filter(category__status=1)
-        if datetime.datetime.now()>datetime.datetime(d.year,d.month, d.day, 11, 25, 0,0):
+        if datetime.datetime.now()>datetime.datetime(d.year,d.month, d.day, 10, 25, 0,0):
             switch=True
             # if lunch was already submitted today...
         todays_orders = Traded_article.objects.filter(author=request.user,created_on__year=d.year,created_on__month=d.month,created_on__day=d.day)

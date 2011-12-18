@@ -24,7 +24,7 @@ def placeOrder(request):
     else:
         #pdb.set_trace()this time switch
         d=datetime.date.today()
-        if datetime.datetime.now()>datetime.datetime(d.year,d.month, d.day, 11, 25, 0,0):
+        if datetime.datetime.now()>datetime.datetime(d.year,d.month, d.day, 10, 25, 0,0):
             switch=True
         # if lunch was already submitted today...
             todays_orders = Order.objects.filter(user=request.user,date__year=d.year,date__month=d.month,date__day=d.day)
