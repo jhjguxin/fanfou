@@ -94,14 +94,14 @@ def viewOrdersSummary(request, year=None, month=None):
     unique_dates = list(unique_dates)
     unique_dates.sort(reverse=True)
     oldtime=unique_dates[0]
-    new_dates=[oldtime]
+    new_dates=[unique_dates[0]]
     for d in unique_dates:
         if not(d.year==oldtime.year and d.month==oldtime.month):
-            new_dates.append(oldtime)
+            new_dates.append(d)
             #type(d)
             oldtime=d
             #unique_dates.remove(d)
-
+    #pdb.set_trace()
     unique_dates=new_dates
          
 
