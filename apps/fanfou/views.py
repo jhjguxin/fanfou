@@ -67,9 +67,10 @@ def viewOrders(request, date=None):
     #pdb.set_trace()
     if date=='today':  date = datetime.datetime.now()
     if date:
-        orders = Traded_article.objects.filter(created_on__year=date.year,created_on__month=date.month,created_on__day=date.day).all()
+        orders = Traded_article.objects.filter(created_on__year=date.year,created_on__month=date.month,created_on__day=date.day).all().order_by("created_on").reverse()
     else:
-        orders = Traded_article.objects.all()
+        #orders = Traded_article.objects.all()
+        orders = Traded_article.objects.all().order_by("created_on").reverse()
     #total = reduce(lambda x,y: 1,orders,0)
     #pdb.set_trace()
     atotal=0
