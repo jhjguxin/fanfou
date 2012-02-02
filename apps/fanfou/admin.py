@@ -57,7 +57,7 @@ class ArticleAdmin(admin.ModelAdmin):
 class Traded_articleAdmin(admin.ModelAdmin):
     list_display=('author','guests','article','total','pc','created_on',)
     list_filter = ('author', 'article__category', "created_on")
-    search_fields = ('author__username','category__name','^author__first_name', '^author__last_name',)
+    search_fields = ('author__username','article__name','article__category__name','^author__first_name', '^author__last_name',)
 
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Article,ArticleAdmin)
