@@ -96,7 +96,7 @@ def viewOrders(request, date=None,summary=None):
 
 def articleorder(orders=Traded_article.objects.all()):
     #pdb.set_trace()
-    orders_list=list(orders.order_by("created_on").reverse())
+    orders_list=list(orders.reverse())
     orders_list1=list(orders)
     #old_order=orders[0]
     new_orders=[]
