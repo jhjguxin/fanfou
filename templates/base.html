@@ -25,7 +25,7 @@
 
 <div id='fanfou'>
   <p>I want do <a href="{% url f_order %}" title="order meal" >order</a> meal</p>
-  <p>I want do veiw <a href="{% url f_orderlist %}" title="veiw orders list" >all</a> of orders list or <a href="{% url f_todayorder %}" title="veiw today orders list" >today</a> orders list</p>
+  <p>I want do veiw <a href="{% url f_orderlist %}" title="veiw orders list" >all</a> and <a href="{% url f_orderlist %}?summary=true" title="veiw orders list" >all summary</a> of orders list or <a href="{% url f_orderlist %}?date=today" title="veiw today orders list" >today</a> orders list,check <a href="{% url f_orderlist %}?date=today&&summary=true" title="veiw today orders list" >today's summary</a>.</p>
   <p>the  <a href="{% url f_summary %}" title="the summary" >summary</a></p>
 
 </div>

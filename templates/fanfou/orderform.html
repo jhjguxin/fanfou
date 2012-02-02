@@ -7,17 +7,27 @@
 {% block body %}
 
 <h2>Order Lunch</h2>
-{% if switch %}
+{% if late %}
 <p>
-Sorry, but you may not submit more than one order per day.or your are late 明天早点哦!
+your are late 明天早点哦!
 </p>
 {% else %}
+    {% if todays_orders %}
+        <p>
+        Sorry, but you may not submit more than one order per day.Now you can change the order,until the erp be closed!<br>我后悔啦～～～～～～～～～，点击下面的按钮重新今日的订饭...
+        </p>
+        <form id="change_form" method="post" action="">
+                {% csrf_token %}
+                <input type="submit" value="I'd like other meal" />
 
-    {% if articles %}
-    <p>
-    Submit this form to place your lunch order for today.  Add guests if you will be bringing anyone with you, or leave it at 0 if not.
-    </p>
-    <div style="margin-left: 2em;">
+        </form>
+    {% else %}
+
+        {% if articles %}
+        <p>
+        Submit this form to place your lunch order for today.  Add guests if you will be bringing anyone with you, or leave it at 0 if not.
+        </p>
+        <div style="margin-left: 2em;">
         <form id="order_form" method="post" action="">
             <div>
                 <h2>今天吃啥</h2>
@@ -36,11 +46,12 @@ Sorry, but you may not submit more than one order per day.or your are late 明�
 Make sure you choose the righ restaurant<br />
 Once you submit, you cannot go back and cancel your order.  However, if you don't submit, you may starve.  It's up to you.
         </p>
-    </div>
-    {% else %}
-    <p>
-    Today no meal to order,please contact the admin!
-    </p>
+        </div>
+        {% else %}
+        <p>
+        Today no meal to order,please contact the admin!
+        </p>
+       {% endif %}
     {% endif %}
 {% endif %}
 
